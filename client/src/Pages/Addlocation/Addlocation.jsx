@@ -18,7 +18,7 @@ const AddLocation = ({ onAddLocation }) => {
         'Mumbai Vile Parle', 'Boisar', 'Palghar', 'Kelve Road', 'Virar', 'Vasai Road',
     ];
 
-    const locationTypes = ['Park', 'Beach', 'Forest', 'Temple', 'Mountain', 'Other'];
+    const locationTypes = ['Organizations', 'NGOs', 'Government Government agencies'];
 
     const handleChange = (e) => {
         const { name, value } = e.target;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import LocationCards from '../../components/LocationCards/LocationCards';
 // Ensure this import is correct
 
 const Home = () => {
@@ -20,7 +21,8 @@ const Home = () => {
 
   return (
     <div className="bg-slate-200 p-5 min-h-screen">
-      <div className="flex flex-wrap gap-5 mt-28 justify-center">
+      <LocationCards />
+      {/* <div className="flex flex-wrap gap-5 mt-28 justify-center">
         {locations.map((location) => (
           <div
             key={location._id}
@@ -46,7 +48,7 @@ const Home = () => {
             </button>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

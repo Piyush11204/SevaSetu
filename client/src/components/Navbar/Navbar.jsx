@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  
   const [currentUser, setCurrentUser] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -16,7 +16,7 @@ const Navbar = () => {
     const fetchCurrentUser = async () => {
       try {
         const response = await axios.get("http://localhost:8080/api/auth/login/success", {
-          withCredentials: true,
+          withCredentials: true,  // Ensure credentials are sent
         });
         setCurrentUser(response.data.user);
       } catch (error) {
@@ -24,6 +24,8 @@ const Navbar = () => {
         setCurrentUser(null);
       }
     };
+    
+   
 
     // Check if the user is authenticated via token or OAuth
     if (localStorage.getItem("token")) {
@@ -32,6 +34,8 @@ const Navbar = () => {
       fetchCurrentUser();
     }
   }, []);
+
+  console.log("Current User:", currentUser); // Debugging log
 
   return (
     <div className="w-full">
@@ -83,7 +87,7 @@ const Navbar = () => {
             <div className="flex items-center justify-end gap-3">
               {currentUser && (
                 <div className="hidden md:flex items-center space-x-2">
-                  {currentUser.photos ? (
+                  {currentUser.photos && currentUser.photos.length > 0 ? (
                     <img
                       className="w-10 h-10 rounded-full"
                       src={currentUser.photos[0].value}
@@ -91,7 +95,7 @@ const Navbar = () => {
                     />
                   ) : (
                     <div className="bg-violet-400 text-gray-100 w-10 h-10 flex items-center justify-center rounded-full">
-                      {currentUser.firstName[0]}
+                      {currentUser.name[0]}
                     </div>
                   )}
                   <h3 className="text-white">
@@ -134,15 +138,15 @@ const Navbar = () => {
               {currentUser && (
                 <>
                   <div className="flex items-center space-x-2 mt-4">
-                    {currentUser.photos ? (
+                    {currentUser.photos && currentUser.photos.length > 0 ? (
                       <img
                         className="w-10 h-10 rounded-full"
-                        src={currentUser.photos.value || currentUser.photos[0].value }
+                        src={currentUser.photos[0].value}
                         alt={currentUser.name}
                       />
                     ) : (
                       <div className="bg-violet-400 text-gray-100 w-10 h-10 flex items-center justify-center rounded-full">
-                        {currentUser.firstName[0]}
+                        {currentUser.name[0]}
                       </div>
                     )}
                     <h3>{currentUser.name}</h3>

@@ -39,9 +39,14 @@ router.post('/', upload.single('image'), async (req, res) => {
 
         const locationData = {
             name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            DrName:  req.body.DrName,
+            SrName:  req.body.SrName,
+            JrName:  req.body.JrName,
             locationType: req.body.locationType,
             station: req.body.station,
-            image: req.file ? req.file.path : null, 
+            image: req.file ? req.file.path : null,
             description: req.body.description,
             additionalDetails: req.body.additionalDetails,
             rating: req.body.rating

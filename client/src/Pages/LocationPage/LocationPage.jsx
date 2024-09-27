@@ -105,6 +105,10 @@ const LocationPage = () => {
           </figure>
           <section className="flex-1 w-full sm:w-1/2">
             <p className="text-lg"><strong>Type:</strong> {locationData.locationType || 'Not available'}</p>
+            <p className="text-lg"><strong>Phone:</strong> {locationData.phone || 'Not available'}</p>
+            <p className="text-lg"><strong>Director:</strong> {locationData.DrName || 'Not available'}</p>
+            <p className="text-lg"><strong>Chief Operating Officer:</strong> {locationData.SrName || 'Not available'}</p>
+            <p className="text-lg"><strong>Chief Financial Officer:</strong> {locationData.JrName || 'Not available'}</p>
             <p className="text-lg"><strong>Nearby Station:</strong> {locationData.station || 'Not available'}</p>
             <p className="text-lg">
               <strong>Rating:</strong>
@@ -113,7 +117,7 @@ const LocationPage = () => {
               ))}
             </p>
             {locationData.additionalDetails && (
-              <p className="text-lg"><strong>Review:</strong> {locationData.additionalDetails}</p>
+              <p className="text-lg"><strong>Facilities we will provide:</strong> {locationData.additionalDetails}</p>
             )}
             <div className="mt-8 bg-gray-200 p-4 rounded-xl shadow-md">
               <h2 className="text-xl font-bold text-gray-800 mb-4">Find Us Here:</h2>
@@ -161,6 +165,7 @@ const LocationPage = () => {
                     alt={location.name}
                     className="w-full h-40 object-cover rounded-md mb-4"
                   />
+
                   <p className="text-sm mb-2"><strong>Nearby Station:</strong> {location.station}</p>
                   <p className="text-sm">
                     <strong>Rating:</strong>

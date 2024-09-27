@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import LocationCards from '../../components/LocationCards/LocationCards';
+import { motion } from 'framer-motion';
+
 // Ensure this import is correct
 
 const Home = () => {
@@ -21,6 +23,33 @@ const Home = () => {
 
   return (
     <div className="bg-slate-200 p-5 min-h-screen">
+      <motion.header 
+        className="bg-gradient-to-r from-blue-500 via-green-500 to-yellow-500 text-white py-12 mx-4 relative overflow-hidden"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold text-center mb-4"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
+          >
+            Sevasetu
+          </motion.h1>
+          <motion.p 
+            className="text-xl md:text-2xl text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            Connecting volunteers to organizations during crises
+          </motion.p>
+        </div>
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('path/to/texture.png')] opacity-10"></div>
+      </motion.header>
       <LocationCards />
       {/* <div className="flex flex-wrap gap-5 mt-28 justify-center">
         {locations.map((location) => (

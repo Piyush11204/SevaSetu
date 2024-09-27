@@ -4,47 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { MapPin, Bell, BookOpen, Users, Calendar, Menu } from "lucide-react";
 
-const Navbar = () => {
-  const [currentUser, setCurrentUser] = useState(null);
+const Navbar = ({currentUser}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const handleLogout = () => {
     window.open("http://localhost:8080/api/auth/logout", "_self");
   };
-
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/api/auth/login/success",
-          {
-            withCredentials: true, // Ensure credentials are sent
-          }
-        );
-        setCurrentUser(response.data.user);
-      } catch (error) {
-        console.error("Error fetching current user:", error);
-        setCurrentUser(null);
-      }
-    };
-
-    // Check if the user is authenticated via token or OAuth
-    if (localStorage.getItem("token")) {
-      fetchCurrentUser();
-    } else {
-      fetchCurrentUser();
-    }
-  }, []);
-
-  console.log("Current User:", currentUser); // Debugging log
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
+  
   return (
-    <div className="w-full">
+    <div className="w-full mb-24">
       <header className="fixed inset-x-0 top-0 z-30 mx-auto bg-blue-500 py-4 shadow-lg backdrop-blur-lg rounded-b-xl lg:max-w-screen shadow-xl">
         <div className="px-8">
           <div className="flex items-center justify-between">
@@ -163,31 +130,31 @@ const Navbar = () => {
                 Pricing
               </Link> */}
               <a
-                href="#"
+                to="#"
                 className="block text-white hover:bg-blue-500 px-2 py-1 rounded"
               >
                 Home
               </a>
               <a
-                href="#"
+                to="#"
                 className="block text-white hover:bg-blue-500 px-2 py-1 rounded"
               >
                 Map
               </a>
               <a
-                href="#"
+                to="#"
                 className="block text-white hover:bg-blue-500 px-2 py-1 rounded"
               >
                 Training
               </a>
               <a
-                href="#"
+                to="#"
                 className="block text-white hover:bg-blue-500 px-2 py-1 rounded"
               >
                 Community
               </a>
               <a
-                href="#"
+                to="#"
                 className="block text-white hover:bg-blue-500 px-2 py-1 rounded"
               >
                 Profile

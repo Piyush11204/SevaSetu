@@ -28,6 +28,7 @@ router.get("/login/success", (req, res) => {
       success: true,
       message: "successful",
       user: req.user,
+      session: req.session,
     });
   } else {
     res.status(401).json({
@@ -36,7 +37,7 @@ router.get("/login/success", (req, res) => {
     });
   }
 });
-
+ 
 // Failed login
 router.get("/login/failed", (req, res) => {
   res.status(401).json({

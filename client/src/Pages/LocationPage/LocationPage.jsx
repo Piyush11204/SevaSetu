@@ -190,7 +190,7 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { FaMapMarkerAlt, FaStar, FaUserFriends, FaHandsHelping } from 'react-icons/fa';
+import { FaMapMarkerAlt,FaCalendarAlt,FaPhone, FaStar, FaUserFriends, FaHandsHelping } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const LocationPage = () => {
@@ -314,14 +314,31 @@ const LocationPage = () => {
                   <FaUserFriends className="text-blue-500 mr-2" />
                   <span className="text-gray-700">{locationData.locationType || 'Type not available'}</span>
                 </div>
+                <div className="flex items-center mr-6 mb-2">
+                  <FaPhone className="text-green-500 mr-2"/>
+                  <span className="text-gray-700">{locationData.phone || 'Phone not available'}</span>
+                </div>
                 <div className="flex items-center mb-2">
                   <FaStar className="text-yellow-400 mr-2" />
                   <span className="text-gray-700">
                     {locationData.rating ? `${locationData.rating} out of 5` : 'Not rated'}
                   </span>
                 </div>
+                <div className="flex items-center ml-3  mb-2">
+                  <FaCalendarAlt className="text-orange-500 mr-2" />
+                  <span className="text-gray-700">
+                    {locationData.openingTime || ' not available'}
+                  </span>
+                </div>
               </div>
+              <label className="font-bold">Description</label>
               <p className="text-gray-600 mb-6">{locationData.description || 'No description available.'}</p>
+              <label className="font-bold">Director :</label>
+              <p className="text-gray-600 mb-6">{locationData.DrName || 'Not available.'}</p>
+              <label className="font-bold">Chief Operating Officer:</label>
+              <p className="text-gray-600 mb-6">{locationData.SrName || 'Not available.'}</p>
+              <label className="font-bold">Chief Financial Officer :</label>
+              <p className="text-gray-600 mb-6">{locationData.JrName || 'Not available.'}</p>
               <button
                 onClick={handleVolunteer}
                 className="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600 transition duration-300 transform hover:scale-105 hover:shadow-lg"

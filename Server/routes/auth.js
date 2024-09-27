@@ -2,7 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const { handleAuth } = require("../controllers/auth");
 
-const CLIENT_URL = "http://localhost:3000/";
+const CLIENT_URL = "http://localhost:3000/selectrole";
 
 // Successful login
 // router.get("/login/success", (req, res) => {

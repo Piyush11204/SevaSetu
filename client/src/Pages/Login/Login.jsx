@@ -1,7 +1,8 @@
 import React,{ useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import SelectRole from "../../components/SelectRole/SelectRole";
 
 
 const Login = () => {
@@ -33,7 +34,8 @@ const Login = () => {
             console.log("Login successful!", res.data);
 
             // Redirect user to homepage
-            window.location = "/";
+            window.location = "/selectrole";
+            // <Navigate to={SelectRole} />
         } catch (error) {
             if (
                 error.response &&
@@ -57,7 +59,7 @@ const Login = () => {
                         </h1>
                         <div className="w-full flex-1 mt-8">
                             <div className="flex flex-col items-center">
-                                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                                <button  onClick={google} className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                                     <div className="bg-white p-2 rounded-full">
                                         <svg
                                             className="w-4"
@@ -81,7 +83,7 @@ const Login = () => {
                                             />
                                         </svg>
                                     </div>
-                                    <span className="ml-4" onClick={google}>
+                                    <span className="ml-4">
                                         Sign Up with Google
                                     </span>
                                 </button>

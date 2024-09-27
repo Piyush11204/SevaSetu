@@ -10,6 +10,7 @@ import Signup from "./Pages/Singup/Signup.jsx"
 import Login from './Pages/Login/Login.jsx'
 import Layout from './Layout.jsx'
 import AddLocation from './Pages/Addlocation/Addlocation.jsx'
+import LocationPage from './Pages/LocationPage/LocationPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       <Route path='signup' element={<Signup />} />
       <Route path='login' element={<Login />} />
       <Route path='addyours' element={<AddLocation />}/>
+      <Route path="location/:id" element={<LocationPage />} />
       <Route path='*' element={<h1 className='text-center text-3xl text-bold'>Not Found</h1>} />
 
     </Route>

@@ -282,7 +282,6 @@ const LocationPage = () => {
 
       <main className="container mx-auto py-8 px-4 md:px-8">
         <div className="mx-4 md:mx-[10%] mb-8">
-        <div>
           <motion.div 
             className="flex justify-center mb-8"
             initial={{ opacity: 0, y: 50 }}
@@ -349,7 +348,7 @@ const LocationPage = () => {
               </button>
             </div>
           </motion.div>
-        </div>
+
           <motion.div 
             className="bg-white rounded-lg shadow-lg overflow-hidden mb-8 transition-all duration-300 hover:shadow-xl"
             initial={{ opacity: 0, y: 50 }}

@@ -73,7 +73,7 @@ const AddLocation = ({ onAddLocation }) => {
     return (
         <div className="min-h-screen my-32 flex justify-center items-center">
             <div className="max-w-screen-lg w-full bg-white shadow-lg rounded-lg p-8">
-                <h1 className="text-2xl font-extrabold text-gray-900 mb-6">Add Organisation</h1>
+                <h1 className="text-2xl font-extrabold text-gray-900 mb-6">Add organisation</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label className="block text-gray-700 text-sm font-medium mb-2">Organisation Name:</label>

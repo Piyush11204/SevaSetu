@@ -1,181 +1,209 @@
+//VOLUNTEER FORM PAGE
 import React, { useState } from 'react';
-import { User, Mail, Home, Phone, BookOpen, FileText, Image, Award } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-const VolunteerFormPage = () => {
+const VolunteerForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     address: '',
     phone: '',
     education: '',
+    profileImage: null, // To store the uploaded image file
     description: '',
     certiName: '',
     certiDes: '',
+    certiImage: null, // To store the uploaded certificate image file
   });
+  const [errors, setErrors] = useState({});
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-  const [profile, setProfile] = useState(null);
-  const [certificate, setCertificate] = useState(null);
-  const [submittedData, setSubmittedData] = useState(null);
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: files ? files[0] : value, // Handle file uploads
+    }));
   };
 
-  const handleFileChange = (e, setFunction) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => setFunction(e.target.result);
-      reader.readAsDataURL(file);
-    }
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = 'Invalid email format';
+    if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
+    if (!/^\d{10}$/.test(formData.phone)) newErrors.phone = 'Invalid phone number';
+    if (!formData.address.trim()) newErrors.address = 'Address is required';
+    if (!formData.education.trim()) newErrors.education = 'Education is required';
+    if (!formData.profileImage) newErrors.profileImage = 'Profile image is required';
+    if (!formData.certiName.trim()) newErrors.certiName = 'Certificate name is required';
+    if (!formData.certiDes.trim()) newErrors.certiDes = 'Certificate description is required';
+    if (!formData.certiImage) newErrors.certiImage = 'Certificate image is required';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const submissionData = {
-      ...formData,
-      profile,
-      image: certificate,
-      createdAt: new Date().toISOString(),
-    };
-    setSubmittedData(submissionData);
+    if (validateForm()) {
+      console.log('Form submitted:', formData);
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        address: '',
+        phone: '',
+        education: '',
+        profileImage: null,
+        description: '',
+        certiName: '',
+        certiDes: '',
+        certiImage: null,
+      });
+    } else {
+      setSubmitStatus('error');
+    }
   };
-
-  const InputField = ({ icon: Icon, name, type = 'text', placeholder, value }) => (
-    <div className="mb-4">
-      <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
-        {name.charAt(0).toUpperCase() + name.slice(1)}
-      </label>
-      <div className="relative rounded-md shadow-sm">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Icon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-        </div>
-        <input
-          type={type}
-          name={name}
-          id={name}
-          className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
-          placeholder={placeholder}
-          value={value}
-          onChange={handleInputChange}
-        />
-      </div>
-    </div>
-  );
 
   return (
     <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans py-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-extrabold text-center mb-8 text-indigo-800">
-          SevaSetu Volunteer Registration
-        </h1>
-
-        <div className="bg-white rounded-xl shadow-2xl overflow-hidden mb-12 animate-fade-in-up">
-          <div className="md:flex">
-            <div className="md:w-1/2 p-8">
-              <h2 className="text-2xl font-bold mb-6 text-indigo-700">Volunteer Information</h2>
-              <form onSubmit={handleSubmit}>
-                <InputField icon={User} name="name" placeholder="Enter your full name" value={formData.name} />
-                <InputField icon={Mail} name="email" type="email" placeholder="Enter your email" value={formData.email} />
-                <InputField icon={Home} name="address" placeholder="Enter your address" value={formData.address} />
-                <InputField icon={Phone} name="phone" placeholder="Enter your phone number" value={formData.phone} />
-                <InputField icon={BookOpen} name="education" placeholder="Enter your education" value={formData.education} />
-                
-                <div className="mb-4">
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-                    Description
-                  </label>  
-                  <div className="relative rounded-md shadow-sm">
-                    <div className="absolute inset-y-0 left-0 pl-3 pt-3 pointer-events-none">
-                      <FileText className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                    </div>
-                    <textarea
-                      name="description"
-                      id="description"
-                      rows="3"
-                      className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
-                      placeholder="Tell us about yourself"
-                      value={formData.description}
-                      onChange={handleInputChange}
-                    ></textarea>
-                  </div>
-                </div>
-
-                <InputField icon={Award} name="certiName" placeholder="Enter certificate name" value={formData.certiName} />
-                <InputField icon={FileText} name="certiDes" placeholder="Enter certificate description" value={formData.certiDes} />
-
-                <div className="mb-4">
-                  <label htmlFor="profile" className="block text-sm font-medium text-gray-700 mb-1">
-                    Profile Picture
-                  </label>
-                  <input
-                    type="file"
-                    name="profile"
-                    id="profile"
-                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-                    onChange={(e) => handleFileChange(e, setProfile)}
-                  />
-                </div>
-
-                <div className="mb-6">
-                  <label htmlFor="certificate" className="block text-sm font-medium text-gray-700 mb-1">
-                    Certificate Image
-                  </label>
-                  <input
-                    type="file"
-                    name="certificate"
-                    id="certificate"
-                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-                    onChange={(e) => handleFileChange(e, setCertificate)}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors duration-300 ease-in-out flex items-center justify-center"
-                >
-                  <User className="mr-2" size={20} />
-                  Register as Volunteer
-                </button>
-              </form>
-            </div>
-
-            <div className="md:w-1/2 bg-indigo-600 p-8 text-white">
-              <h2 className="text-2xl font-bold mb-6">Preview</h2>
-              {submittedData ? (
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    {submittedData.profile && (
-                      <img src={submittedData.profile} alt="Profile" className="w-20 h-20 rounded-full object-cover" />
-                    )}
-                    <div>
-                      <h3 className="text-xl font-semibold">{submittedData.name}</h3>
-                      <p className="text-indigo-200">{submittedData.email}</p>
-                    </div>
-                  </div>
-                  <p><strong>Address:</strong> {submittedData.address}</p>
-                  <p><strong>Phone:</strong> {submittedData.phone}</p>
-                  <p><strong>Education:</strong> {submittedData.education}</p>
-                  <p><strong>Description:</strong> {submittedData.description}</p>
-                  <p><strong>Certificate:</strong> {submittedData.certiName}</p>
-                  <p><strong>Certificate Description:</strong> {submittedData.certiDes}</p>
-                  {submittedData.image && (
-                    <div>
-                      <p className="font-semibold mb-2">Certificate Image:</p>
-                      <img src={submittedData.image} alt="Certificate" className="max-w-full h-auto rounded-md" />
-                    </div>
-                  )}
-                  <p className="text-sm text-indigo-200">Submitted on: {new Date(submittedData.createdAt).toLocaleString()}</p>
-                </div>
-              ) : (
-                <p className="text-indigo-200">Fill out the form to see a preview of your submission here.</p>
-              )}
-            </div>
+        <div className="bg-white rounded-xl shadow-2xl overflow-hidden max-w-2xl mx-auto animate-fade-in-up">
+          <div className="bg-indigo-600 p-6 text-white">
+            <h2 className="text-3xl font-bold text-center">Volunteer Registration Form</h2>
+            
           </div>
+          <form onSubmit={handleSubmit} className="p-8 space-y-6">
+            <div>
+              <label htmlFor="name" className="block mb-1 font-medium text-indigo-700">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+            </div>
+            <div>
+              <label htmlFor="email" className="block mb-1 font-medium text-indigo-700">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            </div>
+            <div>
+              <label htmlFor="address" className="block mb-1 font-medium text-indigo-700">Address</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address}</p>}
+            </div>
+            <div>
+              <label htmlFor="phone" className="block mb-1 font-medium text-indigo-700">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+            </div>
+            <div>
+              <label htmlFor="education" className="block mb-1 font-medium text-indigo-700">Education</label>
+              <input
+                type="text"
+                id="education"
+                name="education"
+                value={formData.education}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {errors.education && <p className="text-red-500 text-sm mt-1">{errors.education}</p>}
+            </div>
+            <div>
+              <label htmlFor="profileImage" className="block mb-1 font-medium text-indigo-700">Profile Image</label>
+              <input
+                type="file"
+                id="profileImage"
+                name="profileImage"
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {errors.profileImage && <p className="text-red-500 text-sm mt-1">{errors.profileImage}</p>}
+            </div>
+            <div>
+              <label htmlFor="description" className="block mb-1 font-medium text-indigo-700">Volunteer Bio</label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                rows="3"
+              ></textarea>
+            </div>
+            <div>
+              <label htmlFor="certiName" className="block mb-1 font-medium text-indigo-700">Certificate Name</label>
+              <input
+                type="text"
+                id="certiName"
+                name="certiName"
+                value={formData.certiName}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {errors.certiName && <p className="text-red-500 text-sm mt-1">{errors.certiName}</p>}
+            </div>
+            <div>
+              <label htmlFor="certiDes" className="block mb-1 font-medium text-indigo-700">Certificate Description</label>
+              <textarea
+                id="certiDes"
+                name="certiDes"
+                value={formData.certiDes}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                rows="3"
+              ></textarea>
+              {errors.certiDes && <p className="text-red-500 text-sm mt-1">{errors.certiDes}</p>}
+            </div>
+            <div>
+              <label htmlFor="certiImage" className="block mb-1 font-medium text-indigo-700">Certificate Image</label>
+              <input
+                type="file"
+                id="certiImage"
+                name="certiImage"
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              {errors.certiImage && <p className="text-red-500 text-sm mt-1">{errors.certiImage}</p>}
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-indigo-600 text-white py-3 px-6 rounded-full flex items-center justify-center hover:bg-indigo-700 transition duration-200"
+            >
+              Submit <ArrowRight className="ml-2" />
+            </button>
+            {submitStatus === 'success' && <p className="text-green-500 text-center">Form submitted successfully!</p>}
+            {submitStatus === 'error' && <p className="text-red-500 text-center">Please fix the errors above.</p>}
+          </form>
         </div>
       </div>
     </div>
   );
 };
 
-export default VolunteerFormPage;
+export default VolunteerForm;

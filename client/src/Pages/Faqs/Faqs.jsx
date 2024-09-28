@@ -174,7 +174,7 @@ const Faqs = () => {
   return (
     <div className="bg-[#FFFCFA]">
       <div className="py-8 px-8 md:px-32">
-        <div className="text-[36px] md:text-[48px] font-bold text-[#FF8D24]">
+        <div className="text-[36px] md:text-[48px] font-bold text-blue-500">
           FAQs
         </div>
         <div className="text-[16px] md:text-[18px] mb-8">

@@ -48,13 +48,13 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
-                to="/"
+                to="/about"
                 className="text-white hover:text-blue-200 transition-colors duration-300"
               >
-                Map
+                About
               </Link>
               <Link
-                to="/addyours"
+                to="/training"
                 className="text-white hover:text-blue-200 transition-colors duration-300"
               >
                 Training
@@ -63,13 +63,13 @@ const Navbar = () => {
                 to="/addyours"
                 className="text-white hover:text-blue-200 transition-colors duration-300"
               >
-                Community
+                Add Organization
               </Link>
               <Link
-                to="/"
+                to="/volunteerform"
                 className="text-white hover:text-blue-200 transition-colors duration-300"
               >
-                Profile
+                Add Volunteer
               </Link>
             </nav>
             <div className=" flex justify-center items-center">

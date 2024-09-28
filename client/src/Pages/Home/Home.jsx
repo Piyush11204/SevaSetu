@@ -38,7 +38,7 @@ const Home = () => {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
           >
-            Sevasetu
+            SevaSetu
           </motion.h1>
           <motion.p 
             className="text-xl md:text-2xl text-center"
@@ -53,7 +53,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-[url('path/to/texture.png')] opacity-10"></div>
       </motion.header>
       <LocationCards />
-      <AboutUs />
+      <AboutUs id="about"/>
       <Faqs />
       {/* <div className="flex flex-wrap gap-5 mt-28 justify-center">
         {locations.map((location) => (

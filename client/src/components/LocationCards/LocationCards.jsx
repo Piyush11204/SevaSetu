@@ -22,9 +22,14 @@ const LocationCards = () => {
   }, []);
 
   return (
+    <>
+    <div className='mt-10 text-center'>
+      <h1 className=' text-3xl font-bold'>Registered Organizations</h1>
+      <p className='mt-2 text-gray-800'>Here are some oraganizations who have registered on our website</p>
+    </div>
     <div className="p-5 grid grid-cols-4 justify-center">
       {locations.map((location, index) => (
-        <div key={index} className="mb-10">
+        <div key={index} className="mb-10 hover:scale-110 transition-transform duration-300">
           <div className="bg-gray-100 border border-gray-300 rounded-lg p-4 m-2 shadow-md w-80">
             <h2 className="text-2xl text-center font-semibold text-gray-800 truncate mb-2">{location.name}</h2>
 
@@ -56,6 +61,7 @@ const LocationCards = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

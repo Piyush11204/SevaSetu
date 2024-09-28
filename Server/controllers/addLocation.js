@@ -1,4 +1,3 @@
-
 const Location = require("../models/addLocation")
 
 async function handleAllLocation(req,res){
@@ -9,7 +8,6 @@ async function handleAllLocation(req,res){
         res.status(500).send(e)
     }
 }
-
 module.exports = {
     handleAllLocation,
 };

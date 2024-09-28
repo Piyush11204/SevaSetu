@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 const validateLocation = (data) => {
     const errors = [];
     if (!data.name) errors.push("Name is required");
-    if (!data.locationType || !['Organizations', 'NGOs', 'Government Government agencies'].includes(data.locationType)) errors.push("Select what type of Agencies");
+    if (!data.locationType || !['Organizations', 'NGOs', ' Government agencies'].includes(data.locationType)) errors.push("Select what type of Agencies");
     if (!data.station) errors.push("Station is required");
     if (!data.description) errors.push("Description is About Organizations");
     if (data.rating === undefined || data.rating < 1 || data.rating > 5) errors.push("Rating must be between 1 and 5");

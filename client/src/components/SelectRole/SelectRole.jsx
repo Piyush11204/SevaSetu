@@ -43,8 +43,8 @@ const SelectRole = () => {
     // Redirection based on selected role
     if (selectedRole === 'organization') {
       navigate('/addyours');  // Replace with actual organization route
-    } else if (selectedRole === 'admin') {
-      navigate('/admin');  // Admin route
+    } else if (selectedRole === 'adminAuth') {
+      navigate('/adminAuth');  // Admin route
     } else if (selectedRole === 'volunteer') {
       navigate('/volunteer');  // Replace with actual volunteer route
     }
@@ -62,8 +62,8 @@ const SelectRole = () => {
             icon={UserCircle}
             title="Admin"
             description="Manage users, oversee operations, and maintain the system"
-            onClick={() => handleRoleSelection('admin')}
-            isSelected={selectedRole === 'admin'}
+            onClick={() => handleRoleSelection('adminAuth')}
+            isSelected={selectedRole === 'adminAuth'}
           />
           <RoleOption
             icon={Users}

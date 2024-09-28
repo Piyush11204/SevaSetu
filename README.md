@@ -21,3 +21,7 @@ Admins manage users, permissions, and disputes, ensuring smooth operations.
 9. Security
 Google Auth handles secure login, with JWT for role-based access and authentication.
 Tech stack includes MERN, Google Auth, Botpress, and Google Maps.
+
+
+DRIVE LINK FOR PROJECT VIDEO AND GENERATED CERTI UPLOADED:-
+https://drive.google.com/drive/folders/1UVmy5tVMKi5knuEfi0553-Xy6S2FSCye?usp=sharing

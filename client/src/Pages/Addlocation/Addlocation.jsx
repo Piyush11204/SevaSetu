@@ -4,6 +4,11 @@ import axios from 'axios';
 const AddLocation = ({ onAddLocation }) => {
     const [formData, setFormData] = useState({
         name: '',
+        email: '',
+        SrName: '',
+        DrName: '',
+        phone: '',
+        JrName: '',
         locationType: '',
         station: '',
         image: null,
@@ -13,8 +18,8 @@ const AddLocation = ({ onAddLocation }) => {
     });
 
     const stations = [
-        'Churchgate', 'Mumbai CST', 'Dadar', 'Lokmanya Tilak', 'Andheri', 'Borivali', 
-        'Kalyan', 'Thane', 'Mumbai LTT', 'Mumbai Dadar', 'Mumbai Bandra', 'Mumbai Kurla', 
+        'Churchgate', 'Mumbai CST', 'Dadar', 'Lokmanya Tilak', 'Andheri', 'Borivali',
+        'Kalyan', 'Thane', 'Mumbai LTT', 'Mumbai Dadar', 'Mumbai Bandra', 'Mumbai Kurla',
         'Mumbai Vile Parle', 'Boisar', 'Palghar', 'Kelve Road', 'Virar', 'Vasai Road',
     ];
 
@@ -37,12 +42,18 @@ const AddLocation = ({ onAddLocation }) => {
         e.preventDefault();
         const data = new FormData();
         data.append('name', formData.name);
+        data.append('email', formData.email);
+        data.append('phone', formData.phone);
+        data.append('DrName', formData.DrName);
+        data.append('SrName', formData.SrName);
+        data.append('JrName', formData.JrName);
         data.append('locationType', formData.locationType);
         data.append('station', formData.station);
         data.append('image', formData.image);
         data.append('description', formData.description);
         data.append('additionalDetails', formData.additionalDetails);
         data.append('rating', formData.rating);
+
 
         try {
             const response = await axios({
@@ -62,14 +73,64 @@ const AddLocation = ({ onAddLocation }) => {
     return (
         <div className="min-h-screen my-32 flex justify-center items-center">
             <div className="max-w-screen-lg w-full bg-white shadow-lg rounded-lg p-8">
-                <h1 className="text-2xl font-extrabold text-gray-900 mb-6">Add Location</h1>
+                <h1 className="text-2xl font-extrabold text-gray-900 mb-6">Add Organisation</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-2">Location Name:</label>
+                        <label className="block text-gray-700 text-sm font-medium mb-2">Organisation Name:</label>
                         <input
                             type="text"
                             name="name"
                             value={formData.name}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required
+                        />
+                        <label className="block text-gray-700 text-sm font-medium mb-2">Phone No:</label>
+                        <input
+                            type="text"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required
+                        />
+                        <label className="block text-gray-700 text-sm font-medium mb-2">Email:</label>
+
+                        <input
+                            type="text"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required
+                        />
+                        <label className="block text-gray-700 text-sm font-medium mb-2">Director :</label>
+
+                        <input
+                            type="text"
+                            name="DrName"
+                            value={formData.DrName}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required
+                        />
+                        <label className="block text-gray-700 text-sm font-medium mb-2"> Chief Operating Officer:</label>
+
+                        <input
+                            type="text"
+                            name="SrName"
+                            value={formData.SrName}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required
+                        />
+                        <label className="block text-gray-700 text-sm font-medium mb-2"> Chief Financial Officer
+                        :</label>
+
+                        <input
+                            type="text"
+                            name="JrName"
+                            value={formData.JrName}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             required

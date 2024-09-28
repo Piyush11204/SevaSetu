@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import { UserCircle, Users, Building2 } from 'lucide-react';
-import axios from 'axios';
 
 const RoleOption = ({ icon: Icon, title, description, onClick, isSelected }) => (
   <div
@@ -19,6 +19,7 @@ const SelectRole = () => {
   const [selectedRole, setSelectedRole] = useState(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Initialize navigate for redirection
 
   const handleRoleSelection = (role) => {
     setSelectedRole(role);
@@ -28,7 +29,8 @@ const SelectRole = () => {
     setTermsAccepted(e.target.checked);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
+    // Input validations
     if (!selectedRole) {
       setErrorMessage('Please select a role.');
       return;
@@ -38,24 +40,13 @@ const SelectRole = () => {
       return;
     }
 
-    try {
-      const payload = {
-        role: selectedRole,
-        termsAccepted: termsAccepted,
-        // Add other user details like firstName, lastName, email, and password here
-      };
-
-      // Replace with your actual API endpoint
-      const response = await axios.put(`/api/users/update-role/{userId}`, payload);
-
-      if (response.status === 201) {
-        alert('Role selected and terms accepted successfully.');
-      } else {
-        alert('Failed to update role. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error updating role:', error);
-      alert('An error occurred. Please try again later.');
+    // Redirection based on selected role
+    if (selectedRole === 'organization') {
+      navigate('/addyours');  // Replace with actual organization route
+    } else if (selectedRole === 'admin') {
+      navigate('/admin');  // Admin route
+    } else if (selectedRole === 'volunteer') {
+      navigate('/volunteer');  // Replace with actual volunteer route
     }
   };
 
@@ -67,21 +58,21 @@ const SelectRole = () => {
           <p className="text-xl text-gray-600">Choose the role that best describes you</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <RoleOption 
+          <RoleOption
             icon={UserCircle}
             title="Admin"
             description="Manage users, oversee operations, and maintain the system"
             onClick={() => handleRoleSelection('admin')}
             isSelected={selectedRole === 'admin'}
           />
-          <RoleOption 
+          <RoleOption
             icon={Users}
             title="Volunteer"
             description="Contribute your time and skills to various projects and initiatives"
             onClick={() => handleRoleSelection('volunteer')}
             isSelected={selectedRole === 'volunteer'}
           />
-          <RoleOption 
+          <RoleOption
             icon={Building2}
             title="Organization"
             description="Represent your organization and coordinate with other entities"

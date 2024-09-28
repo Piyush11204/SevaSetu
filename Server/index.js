@@ -6,6 +6,7 @@ const connectDB = require("./DB/db");
 const userRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
 const locationRoutes = require('./routes/addLocation');
+const volunteerRoutes = require('./routes/Volunteer.router.js');
 const session = require("express-session");
 const passport = require("passport");
 
@@ -42,6 +43,7 @@ app.use(passport.session());
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/addlocation', locationRoutes);
+app.use('/api/volunteer', volunteerRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

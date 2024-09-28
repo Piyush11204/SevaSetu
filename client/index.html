@@ -6,6 +6,83 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite + React</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .chatbot-popup {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 400px;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        display: none; /* Initially hidden */
+        z-index: 9999;
+        transition: transform 0.3s ease-in-out; /* Animation */
+    }
+
+    .chatbot-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #007bff, #00d4ff);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5);
+        cursor: pointer;
+        z-index: 10000; /* Above the iframe */
+        transition: background 0.3s, transform 0.3s; /* Animation */
+        display: flex; /* Center the icon */
+        align-items: center; /* Center the icon vertically */
+        justify-content: center; /* Center the icon horizontally */
+    }
+
+    .chatbot-toggle:hover {
+        background: linear-gradient(135deg, #0056b3, #00a8ff);
+        transform: scale(1.1); /* Slightly enlarge the button */
+    }
+
+    .chatbot-toggle:active {
+        transform: scale(0.9); /* Shrink when clicked */
+    }
+</style>
+</head>
+<body>
+
+<iframe 
+    id="chatbot" 
+    class="chatbot-popup" 
+    src="https://cdn.botpress.cloud/webchat/v2/shareable.html?botId=a4d28e1b-8f74-4721-928a-aca397751e70">
+</iframe>
+
+<button class="chatbot-toggle" onclick="toggleChatbot()">
+    <span style="font-size: 24px;">💬</span>
+</button>
+
+<script>
+    function toggleChatbot() {
+        const chatbot = document.getElementById('chatbot');
+        if (chatbot.style.display === 'none' || chatbot.style.display === '') {
+            chatbot.style.display = 'block';
+            chatbot.style.transform = 'translateY(0)'; // Slide in effect
+        } else {
+            chatbot.style.transform = 'translateY(100%)'; // Slide out effect
+            setTimeout(() => { chatbot.style.display = 'none'; }, 300); // Delay hiding the iframe
+        }
+    }
+</script>
+
+  
 </head>
 
 <body>

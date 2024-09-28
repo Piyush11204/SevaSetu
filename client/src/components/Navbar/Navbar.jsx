@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import sevasetu from "../../img/sevasetu.png";
 import { Link, useNavigate } from "react-router-dom";
+// import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 import axios from "axios";
 import { MapPin, Bell, BookOpen, Users, Calendar, Menu } from "lucide-react";
 
-const Navbar = ({currentUser}) => {
+
+const Navbar = () => {
+  const { currentUser } = useContext(UserContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const handleLogout = () => {
     window.open("http://localhost:8080/api/auth/logout", "_self");
   };
-  
+  console.log(currentUser)
   return (
     <div className="w-full mb-24">
       <header className="fixed inset-x-0 top-0 z-30 mx-auto bg-blue-500 py-4 shadow-lg backdrop-blur-lg rounded-b-xl lg:max-w-screen shadow-xl">

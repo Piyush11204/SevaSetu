@@ -5,42 +5,21 @@ import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import { UserContext, UserContextProvider } from "./context/userContext.jsx";
+import { useContext } from "react";
 
 function Layout() {
-  const [currentUser, setCurrentUser] = useState(null);
-
-
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/api/auth/login/success",
-          {
-            withCredentials: true, // Ensure credentials are sent
-          }
-        );
-        setCurrentUser(response.data.user);
-      } catch (error) {
-        console.error("Error fetching current user:", error);
-        setCurrentUser(null);
-      }
-    };
-
-    // Check if the user is authenticated via token or OAuth
-    if (localStorage.getItem("token")) {
-      fetchCurrentUser();
-    } else {
-      fetchCurrentUser();
-    }
-  }, []);
+  // const { currentUser } = useContext(UserContext);
 
   // console.log("Current User:", currentUser);
   return (
     <>
-      <Navbar currentUser={currentUser}/>
-      <Outlet context={ currentUser }/>
+    <UserContextProvider>
+      <Navbar/>
+      <Outlet/>
       <Toaster position="top-center" toastOptions={{ duration: 3000 }} /> 
       <Footer />
+    </UserContextProvider>
     </>
   );
 }

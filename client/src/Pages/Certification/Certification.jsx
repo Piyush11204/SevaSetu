@@ -76,10 +76,10 @@ class Certification extends Component {
 
         <div id="downloadWrapper" ref={this.certificateWrapper} className="p-5">
           <div id="certificateWrapper" className="shadow-lg rounded overflow-hidden relative">
-            <p className="absolute left-[250px] top-[259px] text-[32pt]">{this.state.Name}</p>
-            <p className="date absolute left-[172px] top-[410px] text-[14pt] font-cursive">{this.state.Date}</p>
-            <p className="Subject absolute left-[150px] top-[340px] text-[9.5pt] font-cursive">{this.state.Subject}</p>
-            <p className="ngo absolute left-[250px] top-[130px] text-[29pt] text-teal-700 font-cursive">{this.state.ngo}</p>
+            <p className="absolute left-[210px] top-[210px] text-[32pt]">{this.state.Name}</p>
+            <p className="date absolute left-[140px] top-[350px] text-[14pt] font-cursive">{this.state.Date}</p>
+            <p className="Subject absolute left-[150px] top-[295px] text-[9.5pt] font-cursive">{this.state.Subject}</p>
+            <p className="ngo absolute left-[210px] top-[110px] text-[29pt] text-teal-700 font-cursive">{this.state.ngo}</p>
             <img src={img} alt="Certificate" className="block" />
           </div>
         </div>

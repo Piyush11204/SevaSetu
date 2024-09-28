@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Calendar, Award, BookOpen, Video, Users, FileText } from 'lucide-react';
 
 const TrainingPage = () => {
@@ -93,10 +94,10 @@ const TrainingPage = () => {
               </div>
               <div className="p-6 space-y-4">
                 {resources.map((resource, index) => (
-                  <div key={index} className="flex items-center space-x-4 p-2 hover:bg-indigo-50 rounded-lg transition-colors">
+                  <Link to={"/resourcetraining"} key={index} className="flex items-center space-x-4 p-2 hover:bg-indigo-50 rounded-lg transition-colors">
                     <resource.icon className="text-indigo-600" size={24} />
                     <span className="text-gray-700 font-medium">{resource.title}</span>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -163,8 +164,8 @@ const TrainingPage = () => {
 
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden animate-fade-in-up">
           <div className="bg-indigo-600 p-6 text-white">
-            <h2 className="text-3xl font-bold mb-2">Need Assistance?</h2>
-            <p className="text-indigo-200">We're here to support your learning journey</p>
+            <h2 className="text-3xl font-bold mb-2">Certification</h2>
+            <p className="text-indigo-200">Earn a certificate by completing the above training modules</p>
           </div>
           <div className="p-6 flex flex-col md:flex-row justify-between items-center">
             <div className="text-center md:text-left mb-4 md:mb-0">

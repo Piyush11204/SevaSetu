@@ -4,13 +4,13 @@ import React, { useState } from 'react';
 const VolunteerDashboard = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
-    name: 'John Doe',
-    phone: '+1 (555) 123-4567',
-    email: 'johndoe@example.com',
-    location: 'New York, NY',
-    profession: 'Software Engineer at Tech Corp',
+    name: 'Piyush Yadav',
+    phone: '7558565929',
+    email: 'Piyush11204@gmail.com',
+    location: 'Boisar, Maharashtra',
+    profession: 'Studying BE at VCET',
     volunteeringMotivation: "I'm passionate about giving back to my community and making a positive impact.",
-    profilePhoto: '/api/placeholder/100/100', // Default profile photo
+    profilePhoto: 'https://lh3.googleusercontent.com/a/ACg8ocJnV5nWcCcO2qRGNgFZd9Q8FWTGkqV-6R4Z032u8NYg0n_2C1Dk=s96-c', // Default profile photo
   });
 
   const [certificates, setCertificates] = useState([]);

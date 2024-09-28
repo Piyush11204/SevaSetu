@@ -26,6 +26,8 @@ import VolunteerFormPage from "./Pages/VolunteerFormPage/VolunteerFormPage.jsx";
 import AdminAuth from "./Pages/adminAuth/AdminAuth.jsx";
 import AboutUs from "./Pages/AboutUs/AboutUs.jsx";
 import CrisisPage from "./Pages/CrisisPage/CrisisPage.jsx";
+import TrainingResourcesPage from "./Pages/TrainingResourcesPage/TrainingResourcesPage.jsx";
+import Certification from "./Pages/Certification/Certification.jsx"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,6 +44,8 @@ const router = createBrowserRouter(
       <Route path="crisis" element={<CrisisPage />} />
       <Route path="volunteer" element={<VolunteerDashboard />} />
       <Route path="training" element={<TrainingPage />} />
+      <Route path="certi" element={<Certification />} />
+      <Route path="resourcetraining" element={<TrainingResourcesPage />} />
       <Route path="volunteerform" element={<VolunteerFormPage />} />
       <Route
         path="*"

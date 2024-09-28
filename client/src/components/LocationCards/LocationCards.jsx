@@ -33,17 +33,19 @@ const LocationCards = () => {
   }, []);
 
   const responsive = {
-    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 4, slidesToSlide: 3 },
-    tablet: { breakpoint: { max: 1024, min: 464 }, items: 2, slidesToSlide: 1 },
+    desktop: { breakpoint: { max: 10000, min: 1024 }, items: 4, slidesToSlide: 2 },
+    tablet: { breakpoint: { max: 1024, min: 750 }, items: 2, slidesToSlide: 1 },
+    tablet: { breakpoint: { max: 750, min: 464 }, items: 1, slidesToSlide: 1 },
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1, slidesToSlide: 1 },
   };
 
   return (
-    <div className="p-5">
+    <div className="p-5 flex flex-col justify-center ">
       {Object.keys(groupedLocations).map((type) => (
-        <div key={type} className="mb-10">
-          <h2 className="text-2xl font-bold text-center bg-yellow-200 py-2 rounded-lg">{type}'s</h2>
+        <div key={type} className="mb-10 ">
+          <h2 className="text-4xl font-bold text-center py-2 rounded-lg">{type}'s</h2>
           <Carousel
+            className=' flex justify-center'
             responsive={responsive}
             swipeable={true}
             draggable={true}
@@ -52,8 +54,8 @@ const LocationCards = () => {
             autoPlay={false}
           >
             {groupedLocations[type].map((location) => (
-              <div key={location._id} className="bg-gray-100 border border-gray-300 rounded-lg p-4 m-2 shadow-md w-80">
-                <h2 className="text-lg font-semibold text-gray-800 truncate">{location.name}</h2>
+              <div key={location._id} className="bg-gray-100 border border-gray-300 rounded-lg p-4 m-2 shadow-md w-80 ">
+                <h2 className="text-2xl text-center font-semibold text-gray-800 truncate mb-2">{location.name}</h2>
 
                 {/* Conditional image source handling */}
                 {location.image.startsWith('http') ? (

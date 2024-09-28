@@ -3,6 +3,7 @@ import axios from "axios";
 import LocationCards from '../../components/LocationCards/LocationCards';
 import { motion } from 'framer-motion';
 import Faqs from "../Faqs/Faqs";
+import AboutUs from "../AboutUs/AboutUs";
 
 // Ensure this import is correct
 
@@ -52,6 +53,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-[url('path/to/texture.png')] opacity-10"></div>
       </motion.header>
       <LocationCards />
+      <AboutUs />
       <Faqs />
       {/* <div className="flex flex-wrap gap-5 mt-28 justify-center">
         {locations.map((location) => (

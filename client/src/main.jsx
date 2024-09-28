@@ -21,6 +21,8 @@ import AdminProtectedRoute from "./Routes/AdminProtectedRoute.jsx";
 import SelectRole from "./components/SelectRole/SelectRole.jsx";
 import AdminPage from "./Pages/AdminPage/AdminPage.jsx";
 import VolunteerDashboard from "./Pages/VolunteerDashboard/VolunteerDashboard.jsx";
+import TrainingPage from "./Pages/TrainingPage/TrainingPage.jsx";
+import VolunteerFormPage from "./Pages/VolunteerFormPage/VolunteerFormPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +35,8 @@ const router = createBrowserRouter(
       <Route path="location/:id" element={<LocationPage />} />
       <Route path="adminpage" element={<AdminPage />} />
       <Route path="volunteer" element={<VolunteerDashboard />} />
+      <Route path="training" element={<TrainingPage />} />
+      <Route path="volunteerform" element={<VolunteerFormPage />} />
       <Route
         path="*"
         element={<h1 className="text-center text-4xl mt-10 text-bold"><br></br>404<br></br>Page Not Found</h1>}
